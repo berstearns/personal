@@ -4,74 +4,7 @@
         "pronunciation":"a",
         "type":"vowel"
     },
-    {{
     {
-        "char":"अ",
-        "pronunciation":"a",
-        "type":"vowel"
-    },
-    {
-        "char":"आ",
-        "pronunciation":"ā",
-        "type":"vowel"
-    },
-    {
-        "char":"इ",
-        "pronunciation":"i",
-        "type":"vowel"
-    },
-    {
-        "char":"ई",
-        "pronunciation":"ī",
-        "type":"vowel"
-    },
-    {
-        "char":"उ",
-        "pronunciation":"u",
-        "type":"vowel"
-    },
-    {
-        "char":"ऊ",
-        "pronunciation":"ū",
-        "type":"vowel"
-    },
-    {
-        "char":"ऋ",
-        "pronunciation":"ṛ",
-        "type":"vowel"
-    },
-    {
-        "char":"ए",
-        "pronunciation":"e",
-        "type":"vowel"
-    },
-    {
-        "char":"ऐ",
-        "pronunciation":"ai",
-        "type":"vowel"
-    },
-    {
-        "char":"ओ",
-        "pronunciation":"o",
-        "type":"vowel"
-    },
-    {
-        "char":"औ",
-        "pronunciation":"au",
-        "type":"vowel"
-    },
-    {
-        "char":"अं",
-        "pronunciation":"aṃ",
-        "type":"vowel"
-    },
-    {
-        "char":"अः",
-        "pronunciation":"aḥ",
-        "type":"vowel"
-    }
-}
-
         "char":"आ",
         "pronunciation":"ā",
         "type":"vowel"
