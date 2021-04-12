@@ -1,0 +1,9 @@
+# vim
+// delete lines containing regex
+:g/<regex>/d
+
+# flutter
+flutter createapp <app_name>
+flutter devices
+flutter run
+flutter pub get
