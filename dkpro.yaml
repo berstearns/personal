@@ -5,6 +5,7 @@ info:
 paths:
   /opennlp_segmenter:
     post:
+      operationId: segmenter
       summary: Tokenizer and sentence splitter using OpenNLP.
       requestBody:
         content:
@@ -75,6 +76,7 @@ paths:
                 $ref: '#/components/schemas/CasSentenceToken'
   /opennlp_tagger:
     post:
+      operationId: tagger
       summary: Part-of-Speech annotator using OpenNLP. Requires Sentences to be annotated before.
       requestBody:
         content:
