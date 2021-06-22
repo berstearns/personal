@@ -1,0 +1,370 @@
+{
+  "components" : {
+    "schemas" : {
+      "MorphologicalFeatures" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "voice" : {
+            "type" : "string"
+          },
+          "mood" : {
+            "type" : "string"
+          },
+          "gender" : {
+            "type" : "string"
+          },
+          "degree" : {
+            "type" : "string"
+          },
+          "animacy" : {
+            "type" : "string"
+          },
+          "reflex" : {
+            "type" : "string"
+          },
+          "verbForm" : {
+            "type" : "string"
+          },
+          "number" : {
+            "type" : "string"
+          },
+          "pronType" : {
+            "type" : "string"
+          },
+          "negative" : {
+            "type" : "string"
+          },
+          "person" : {
+            "type" : "string"
+          },
+          "transitivity" : {
+            "type" : "string"
+          },
+          "aspect" : {
+            "type" : "string"
+          },
+          "possessive" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "numType" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "tense" : {
+            "type" : "string"
+          },
+          "case" : {
+            "type" : "string"
+          },
+          "definiteness" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasLemmaPOSSentenceToken" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "sentence" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Sentence"
+            }
+          },
+          "pOS" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/POS"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "lemma" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Lemma"
+            }
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Token"
+            }
+          }
+        }
+      },
+      "POS" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "posValue" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "coarseValue" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Lemma" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "TokenForm" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasDependency" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "dependency" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Dependency"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Token" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "parent" : {
+            "$ref" : "#/components/schemas/Annotation"
+          },
+          "form" : {
+            "$ref" : "#/components/schemas/TokenForm"
+          },
+          "pos" : {
+            "$ref" : "#/components/schemas/POS"
+          },
+          "lemma" : {
+            "$ref" : "#/components/schemas/Lemma"
+          },
+          "syntacticFunction" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "text" : {
+            "type" : "string"
+          },
+          "morph" : {
+            "$ref" : "#/components/schemas/MorphologicalFeatures"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "stem" : {
+            "$ref" : "#/components/schemas/Stem"
+          }
+        }
+      },
+      "Dependency" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "flavor" : {
+            "type" : "string"
+          },
+          "dependencyType" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "governor" : {
+            "$ref" : "#/components/schemas/Token"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "dependent" : {
+            "$ref" : "#/components/schemas/Token"
+          }
+        }
+      },
+      "Sentence" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Annotation" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Stem" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/MaltParser" : {
+      "post" : {
+        "summary" : "Dependency parsing using MaltPaser.\n<p>\nRequired annotations:\n</p>\n<ul>\n<li>Token</li>\n<li>Sentence</li>\n<li>POS</li>\n</ul>\n\nGenerated annotations:\n<ul>\n<li>Dependency (annotated over sentence-span)</li>\n</ul>",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasLemmaPOSSentenceToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasDependency"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "language",
+          "description" : "Use this language instead of the document language to resolve the model.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelVariant",
+          "description" : "Override the default variant used to locate the model.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelArtifactUri",
+          "description" : "URI of the model artifact. This can be used to override the default model resolving \nmechanism and directly address a particular model.\n\n<p>The URI format is mvn:${groupId:${artifactId}:${version}}. Remember to set\nthe variant parameter to match the artifact. If the artifact contains the model in\na non-default location, you  also have to specify the model location parameter, e.g.\nclasspath:/model/path/in/artifact/model.bin.</p>",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelLocation",
+          "description" : "Load the model from this location instead of locating the model automatically.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "printTagSet",
+          "description" : "Log the tag set(s) when a model is loaded.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "ignoreMissingFeatures",
+          "description" : "Process anyway, even if the model relies on features that are not supported by this\ncomponent.",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

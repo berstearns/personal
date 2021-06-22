@@ -1,0 +1,381 @@
+{
+  "components" : {
+    "schemas" : {
+      "CasPOSSentenceToken" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "sentence" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Sentence"
+            }
+          },
+          "pOS" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/POS"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Token"
+            }
+          }
+        }
+      },
+      "MorphologicalFeatures" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "voice" : {
+            "type" : "string"
+          },
+          "mood" : {
+            "type" : "string"
+          },
+          "gender" : {
+            "type" : "string"
+          },
+          "degree" : {
+            "type" : "string"
+          },
+          "animacy" : {
+            "type" : "string"
+          },
+          "reflex" : {
+            "type" : "string"
+          },
+          "verbForm" : {
+            "type" : "string"
+          },
+          "number" : {
+            "type" : "string"
+          },
+          "pronType" : {
+            "type" : "string"
+          },
+          "negative" : {
+            "type" : "string"
+          },
+          "person" : {
+            "type" : "string"
+          },
+          "transitivity" : {
+            "type" : "string"
+          },
+          "aspect" : {
+            "type" : "string"
+          },
+          "possessive" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "numType" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "tense" : {
+            "type" : "string"
+          },
+          "case" : {
+            "type" : "string"
+          },
+          "definiteness" : {
+            "type" : "string"
+          }
+        }
+      },
+      "POS" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "posValue" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "coarseValue" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Lemma" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "TokenForm" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasDependency" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "dependency" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Dependency"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Token" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "parent" : {
+            "$ref" : "#/components/schemas/Annotation"
+          },
+          "form" : {
+            "$ref" : "#/components/schemas/TokenForm"
+          },
+          "pos" : {
+            "$ref" : "#/components/schemas/POS"
+          },
+          "lemma" : {
+            "$ref" : "#/components/schemas/Lemma"
+          },
+          "syntacticFunction" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "text" : {
+            "type" : "string"
+          },
+          "morph" : {
+            "$ref" : "#/components/schemas/MorphologicalFeatures"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "stem" : {
+            "$ref" : "#/components/schemas/Stem"
+          }
+        }
+      },
+      "Dependency" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "flavor" : {
+            "type" : "string"
+          },
+          "dependencyType" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "governor" : {
+            "$ref" : "#/components/schemas/Token"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "dependent" : {
+            "$ref" : "#/components/schemas/Token"
+          }
+        }
+      },
+      "Sentence" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Annotation" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Stem" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/MstParser" : {
+      "post" : {
+        "summary" : "Dependency parsing using MSTParser.\n<p>\nWrapper for the MSTParser (<b>high memory requirements</b>). More information about the parser\ncan be found <a href=\"http://www.seas.upenn.edu/~strctlrn/MSTParser/MSTParser.html\">here</a> <a\nhref=\"http://sourceforge.net/projects/mstparser/\">here</a>\n</p>\n<p>\nThe MSTParser models tend to be very large, e.g. the <a\nhref=\"http://nlp.stanford.edu/software/stanford-dependencies.shtml\">Eisner</a> model is about 600\nMB uncompressed. With this model, parsing a simple sentence with MSTParser requires about 3 GB\nheap memory.\n</p>\n<p>\nThis component feeds MSTParser only with the FORM (token) and POS (part-of-speech) fields. LEMMA,\nCPOS, and other columns from the CONLL 2006 format are not generated (cf.\nmstparser.DependencyInstance DependencyInstance).\n</p>",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasPOSSentenceToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasDependency"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "language",
+          "description" : "Use this language instead of the document language to resolve the model.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelVariant",
+          "description" : "Override the default variant used to locate the model.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelArtifactUri",
+          "description" : "URI of the model artifact. This can be used to override the default model resolving \nmechanism and directly address a particular model.\n\n<p>The URI format is mvn:${groupId:${artifactId}:${version}}. Remember to set\nthe variant parameter to match the artifact. If the artifact contains the model in\na non-default location, you  also have to specify the model location parameter, e.g.\nclasspath:/model/path/in/artifact/model.bin.</p>",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelLocation",
+          "description" : "Load the model from this location instead of locating the model automatically.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "printTagSet",
+          "description" : "Log the tag set(s) when a model is loaded.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "true" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "mappingEnabled",
+          "description" : "Enable/disable type mapping.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "DependencyMappingLocation",
+          "description" : "Load the dependency to UIMA type mapping from this location instead of locating\nthe mapping automatically.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "order",
+          "description" : "Specifies the order/scope of features. 1 only has features over single edges\nand 2 has features over pairs of adjacent edges in the tree. The model must have been\ntrained with the respective order set here.",
+          "required" : false
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

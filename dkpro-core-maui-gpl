@@ -1,0 +1,159 @@
+{
+  "components" : {
+    "schemas" : {
+      "MetaDataStringField" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "key" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasMetaDataStringField" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "metaDataStringField" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/MetaDataStringField"
+            }
+          }
+        }
+      },
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/MauiKeywordAnnotator" : {
+      "post" : {
+        "summary" : "The Maui tool assigns keywords to documents. The keywords can optionally come from controlled\nvocabulary. The keywords are stored in DKPro Core MetaDataStringField \nannotations with the key http://purl.org/dc/terms/subject.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasMetaDataStringField"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "language",
+          "description" : "Use this language instead of the document language to resolve the model.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelVariant",
+          "description" : "Override the default variant used to locate the model.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelLocation",
+          "description" : "Load the model from this location instead of locating the model automatically.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "vocabularyLocation",
+          "description" : "Location of the vocabulary file. Normally, this location is derived from the model\nlocation by replacing the model extension .ser with .rdf.gz.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "vocabularyFormat",
+          "description" : "Format of the vocabulary file. Normally, this information is obtained from the key\nvocabulary.format in the model metadata. Only skos and leaving the\nparameter unset (i.e. no vocabulary) are currently supported.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "UTF-8" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "vocabularyEncoding",
+          "description" : "Encoding of the vocabulary file. Normally, this information is obtained from the key\nvocabulary.encoding in the model metadata.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "0.5" ]
+          },
+          "in" : "query",
+          "name" : "scoreThreshold",
+          "description" : "Minimum similarity score to a variable require to count as a match (0-1).",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "10" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "maxTopics",
+          "description" : "Maximum number of keywords to assign to a document.",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

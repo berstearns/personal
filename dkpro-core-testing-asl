@@ -1,0 +1,181 @@
+{
+  "components" : {
+    "schemas" : {
+      "CasDocumentMetaData" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentMetaData" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DocumentMetaData"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "DocumentMetaData" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "documentUri" : {
+            "type" : "string"
+          },
+          "isLastSegment" : {
+            "type" : "boolean"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "documentBaseUri" : {
+            "type" : "string"
+          },
+          "documentId" : {
+            "type" : "string"
+          },
+          "documentTitle" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "collectionId" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/TagsetDescriptionStripper" : {
+      "post" : {
+        "summary" : "Remove tagset description metadata.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ ]
+      }
+    },
+    "/DocumentMetaDataStripper" : {
+      "post" : {
+        "summary" : "Removes fields from the document meta data which may be different depending on the machine a\ntest is run on.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasDocumentMetaData"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasDocumentMetaData"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ ]
+      }
+    },
+    "/IOTestRunner" : {
+      "post" : {
+        "summary" : null,
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ ]
+      }
+    },
+    "/AssertAnnotations" : {
+      "post" : {
+        "summary" : null,
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

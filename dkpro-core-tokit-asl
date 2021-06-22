@@ -1,0 +1,791 @@
+{
+  "components" : {
+    "schemas" : {
+      "MorphologicalFeatures" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "voice" : {
+            "type" : "string"
+          },
+          "mood" : {
+            "type" : "string"
+          },
+          "gender" : {
+            "type" : "string"
+          },
+          "degree" : {
+            "type" : "string"
+          },
+          "animacy" : {
+            "type" : "string"
+          },
+          "reflex" : {
+            "type" : "string"
+          },
+          "verbForm" : {
+            "type" : "string"
+          },
+          "number" : {
+            "type" : "string"
+          },
+          "pronType" : {
+            "type" : "string"
+          },
+          "negative" : {
+            "type" : "string"
+          },
+          "person" : {
+            "type" : "string"
+          },
+          "transitivity" : {
+            "type" : "string"
+          },
+          "aspect" : {
+            "type" : "string"
+          },
+          "possessive" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "numType" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "tense" : {
+            "type" : "string"
+          },
+          "case" : {
+            "type" : "string"
+          },
+          "definiteness" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasLemmaPOSSentenceToken" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "sentence" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Sentence"
+            }
+          },
+          "pOS" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/POS"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "lemma" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Lemma"
+            }
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Token"
+            }
+          }
+        }
+      },
+      "TokenForm" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Token" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "parent" : {
+            "$ref" : "#/components/schemas/Annotation"
+          },
+          "form" : {
+            "$ref" : "#/components/schemas/TokenForm"
+          },
+          "pos" : {
+            "$ref" : "#/components/schemas/POS"
+          },
+          "lemma" : {
+            "$ref" : "#/components/schemas/Lemma"
+          },
+          "syntacticFunction" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "text" : {
+            "type" : "string"
+          },
+          "morph" : {
+            "$ref" : "#/components/schemas/MorphologicalFeatures"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "stem" : {
+            "$ref" : "#/components/schemas/Stem"
+          }
+        }
+      },
+      "Annotation" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Stem" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Paragraph" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "CasLemma" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "lemma" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Lemma"
+            }
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "POS" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "posValue" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "coarseValue" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Lemma" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasToken" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Token"
+            }
+          }
+        }
+      },
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasLemmaPOSToken" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "pOS" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/POS"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "lemma" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Lemma"
+            }
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Token"
+            }
+          }
+        }
+      },
+      "CasParagraph" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "paragraph" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Paragraph"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "StopWord" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Sentence" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "CasStopWord" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "stopWord" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/StopWord"
+            }
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/GermanSeparatedParticleAnnotator" : {
+      "post" : {
+        "summary" : "Annotator to be used for post-processing of German corpora that have been lemmatized and\nPOS-tagged with the TreeTagger, based on the STTS tagset.\n\nThis Annotator deals with German particle verbs. Particle verbs consist of a particle and a stem,\ne.g. anfangen = an+fangen There are many usages of German particle verbs where the stem and the\nparticle are separated, e.g., Wir fangen gleich an. The TreeTagger lemmatizes the verb stem as\n\"fangen\" and the separated particle as \"an\", the proper verblemma \"anfangen\" is thus not\navailable as an annotation. The GermanSeparatedParticleAnnotator replaces the lemma of the stem\nof particle-verbs (e.g., fangen) by the proper verb lemma (e.g. anfangen) and leaves the lemma of\nthe separated particle unchanged.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasLemmaPOSSentenceToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasLemma"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ ]
+      }
+    },
+    "/AnnotationByLengthFilter" : {
+      "post" : {
+        "summary" : "Removes annotations that do not conform to minimum or maximum length constraints.\n\n(This was previously called TokenFilter).",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ ]
+          },
+          "in" : "query",
+          "name" : "FilterTypes",
+          "description" : "A set of annotation types that should be filtered.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "0" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "MinLengthFilter",
+          "description" : "Any annotation in filterTypes shorter than this value will be removed.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "1000" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "MaxLengthFilter",
+          "description" : "Any annotation in filterAnnotations shorter than this value will be removed.",
+          "required" : true
+        } ]
+      }
+    },
+    "/ParagraphSplitter" : {
+      "post" : {
+        "summary" : "This class creates paragraph annotations for the given input document. It searches for the\noccurrence of two or more line-breaks (Unix and Windows) and regards this as the boundary between\nparagraphs.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasParagraph"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "((\r\n\r\n)+(\r\n)*)|((\n\n)+(\n)*)" ]
+          },
+          "in" : "query",
+          "name" : "splitPattern",
+          "description" : "A regular expression used to detect paragraph splits.",
+          "required" : true
+        } ]
+      }
+    },
+    "/CamelCaseTokenSegmenter" : {
+      "post" : {
+        "summary" : "Split up existing tokens again if they are camel-case text.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasToken"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "true" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "deleteCover",
+          "description" : "Whether to remove the original token.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "markupType",
+          "description" : "Optional annotation type to markup the original covered token area when specified. This type\nmust be a subtype of Annotation.",
+          "required" : false
+        } ]
+      }
+    },
+    "/PatternBasedTokenSegmenter" : {
+      "post" : {
+        "summary" : "Split up existing tokens again at particular split-chars.\nThe prefix states whether the split chars should be added as separate Token Tokens.\nIf the #INCLUDE_PREFIX precedes the split pattern, the pattern is included.\nConsequently, patterns following the #EXCLUDE_PREFIX, will not be added as a Token.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasToken"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "true" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "deleteCover",
+          "description" : "Whether to remove the original token.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "patterns",
+          "description" : "A list of regular expressions, prefixed with #INCLUDE_PREFIX or\n#EXCLUDE_PREFIX. If neither of the prefixes is used, #EXCLUDE_PREFIX is\nassumed.",
+          "required" : true
+        } ]
+      }
+    },
+    "/TokenTrimmer" : {
+      "post" : {
+        "summary" : "Remove prefixes and suffixes from tokens.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasToken"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "prefixes",
+          "description" : "List of prefixes to remove.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "suffixes",
+          "description" : "List of suffixes to remove.",
+          "required" : true
+        } ]
+      }
+    },
+    "/StopWordRemover" : {
+      "post" : {
+        "summary" : "Remove all of the specified types from the CAS if their covered text is in the stop word\ndictionary. Also remove any other of the specified types that is covered by a matching instance.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasStopWord"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "modelLocation",
+          "description" : "A list of URLs from which to load the stop word lists. If an URL is prefixed with a language\ncode in square brackets, the stop word list is only used for documents in that language.\nUsing no prefix or the prefix \"[*]\" causes the list to be used for every document.\nExample: \"[de]classpath:/stopwords/en_articles.txt\"",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "UTF-8" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelEncoding",
+          "description" : "The character encoding used by the model.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "Paths",
+          "description" : "Feature paths for annotations that should be matched/removed. The default is\n\n<pre>\nStopWord.class.getName()\nToken.class.getName()\nLemma.class.getName()+\"/value\"\n</pre>",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "StopWordType",
+          "description" : "Anything annotated with this type will be removed even if it does not match any word in the\nlists.",
+          "required" : false
+        } ]
+      }
+    },
+    "/TokenMerger" : {
+      "post" : {
+        "summary" : "Merges any Tokens that are covered by a given annotation type. E.g. this component can be used\nto create a single tokens from all tokens that constitute a multi-token named entity.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasLemmaPOSToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasLemma"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "annotationType",
+          "description" : "Annotation type for which tokens should be merged.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "constraint",
+          "description" : "A constraint on the annotations that should be considered in form of a JXPath statement.\nExample: set #PARAM_ANNOTATION_TYPE to a NamedEntity type and set the\n#PARAM_CONSTRAINT to \".[value = 'LOCATION']\" to merge only tokens that are\npart of a location named entity.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "JOIN" ]
+          },
+          "in" : "query",
+          "name" : "lemmaMode",
+          "description" : "Configure what should happen to the lemma of the merged tokens. It is possible to JOIN the\nlemmata to a single lemma (space separated), to REMOVE the lemma or LEAVE the lemma of the\nfirst token as-is.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "posValue",
+          "description" : "Set a new POS value for the new merged token. This is the actual tag set value and is subject\nto tagset mapping. For example when merging tokens for named entities, the new POS value may\nbe set to \"NNP\" (English/Penn Treebank Tagset).",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "cposValue",
+          "description" : "Set a new coarse POS value for the new merged token. This is the actual tag set value and is\nsubject to tagset mapping. For example when merging tokens for named entities, the new POS\nvalue may be set to \"NNP\" (English/Penn Treebank Tagset).",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "posType",
+          "description" : "Set a new POS tag for the new merged token. This is the mapped type. If this is specified,\ntag set mapping will not be performed. This parameter has no effect unless PARAM_POS_VALUE is\nalso set.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "language",
+          "description" : "Use this language instead of the document language to resolve the model and tag set mapping.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "POSMappingLocation",
+          "description" : "Override the tagset mapping.",
+          "required" : false
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

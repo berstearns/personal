@@ -1,0 +1,131 @@
+{
+  "components" : {
+    "schemas" : {
+      "CasPennTree" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "pennTree" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PennTree"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "PennTree" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "pennTree" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "transformationNames" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/TGrepWriter" : {
+      "post" : {
+        "summary" : "TGrep2 corpus file writer. Requires PennTrees to be annotated before.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasPennTree"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "targetLocation",
+          "description" : "Path to which the output is written.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "true" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "writeComments",
+          "description" : "Set this parameter to true if you want to add a comment to each PennTree which is written to\nthe output files. The comment is of the form documentId,beginOffset,endOffset.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "true" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "writeT2c",
+          "description" : "Set this parameter to true if you want to encode directly into the tgrep2 binary format.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "NONE" ]
+          },
+          "in" : "query",
+          "name" : "compression",
+          "description" : "Method to compress the tgrep file (only used if PARAM_WRITE_T2C is true). Only NONE, GZIP and\nBZIP2 are supported.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "dropMalformedTrees",
+          "description" : "If true, silently drops malformed Penn Trees instead of throwing an exception.",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

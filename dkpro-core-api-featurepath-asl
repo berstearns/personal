@@ -1,0 +1,87 @@
+{
+  "components" : {
+    "schemas" : {
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/FeaturePathAnnotatorBase" : {
+      "post" : {
+        "summary" : "Base-class for annotators which require the specification of a feature path.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "paths",
+          "description" : "Specify a path that is used for annotation. Format is de.type.name/feature/path. All type\nobjects will be annotated with a IndexTermAnnotation. The value of the IndexTerm is specified\nby the feature path.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "filterFeaturePath",
+          "description" : "Specifies a feature path that is used in the filter. If this is set, you also have to specify\n<code>PARAM_FILTER_CONDITION_OPERATOR</code> and <code>PARAM_FILTER_CONDITION_VALUE</code>.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "filterConditionOperator",
+          "description" : "Specifies the operator for a filtering condition.\n<p>\nIt is only used if <code>PARAM_FILTER_FEATUREPATH</code> is set.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "filterConditionValue",
+          "description" : "Specifies the value for a filtering condition.\n<p>\nIt is only used if <code>PARAM_FILTER_FEATUREPATH</code> is set.",
+          "required" : false
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

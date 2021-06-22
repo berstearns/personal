@@ -1,0 +1,511 @@
+{
+  "components" : {
+    "schemas" : {
+      "MorphologicalFeatures" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "voice" : {
+            "type" : "string"
+          },
+          "mood" : {
+            "type" : "string"
+          },
+          "gender" : {
+            "type" : "string"
+          },
+          "degree" : {
+            "type" : "string"
+          },
+          "animacy" : {
+            "type" : "string"
+          },
+          "reflex" : {
+            "type" : "string"
+          },
+          "verbForm" : {
+            "type" : "string"
+          },
+          "number" : {
+            "type" : "string"
+          },
+          "pronType" : {
+            "type" : "string"
+          },
+          "negative" : {
+            "type" : "string"
+          },
+          "person" : {
+            "type" : "string"
+          },
+          "transitivity" : {
+            "type" : "string"
+          },
+          "aspect" : {
+            "type" : "string"
+          },
+          "possessive" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "numType" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "tense" : {
+            "type" : "string"
+          },
+          "case" : {
+            "type" : "string"
+          },
+          "definiteness" : {
+            "type" : "string"
+          }
+        }
+      },
+      "TokenForm" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasSentenceToken" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "sentence" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Sentence"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Token"
+            }
+          }
+        }
+      },
+      "Token" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "parent" : {
+            "$ref" : "#/components/schemas/Annotation"
+          },
+          "form" : {
+            "$ref" : "#/components/schemas/TokenForm"
+          },
+          "pos" : {
+            "$ref" : "#/components/schemas/POS"
+          },
+          "lemma" : {
+            "$ref" : "#/components/schemas/Lemma"
+          },
+          "syntacticFunction" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "text" : {
+            "type" : "string"
+          },
+          "morph" : {
+            "$ref" : "#/components/schemas/MorphologicalFeatures"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "stem" : {
+            "$ref" : "#/components/schemas/Stem"
+          }
+        }
+      },
+      "Dependency" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "flavor" : {
+            "type" : "string"
+          },
+          "dependencyType" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "governor" : {
+            "$ref" : "#/components/schemas/Token"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "dependent" : {
+            "$ref" : "#/components/schemas/Token"
+          }
+        }
+      },
+      "Annotation" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Stem" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "POS" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "posValue" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "coarseValue" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasLemmaMorphologicalFeaturesPOS" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "morphologicalFeatures" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/MorphologicalFeatures"
+            }
+          },
+          "pOS" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/POS"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "lemma" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Lemma"
+            }
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Lemma" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasLemmaMorphologicalFeaturesPOSSentenceToken" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "sentence" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Sentence"
+            }
+          },
+          "morphologicalFeatures" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/MorphologicalFeatures"
+            }
+          },
+          "pOS" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/POS"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "lemma" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Lemma"
+            }
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Token"
+            }
+          }
+        }
+      },
+      "CasDependency" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "dependency" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Dependency"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Sentence" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/UDPipePosTagger" : {
+      "post" : {
+        "summary" : "Part-of-Speech, lemmatizer, and morphological analyzer using UDPipe. UDPipe uses MorphoDiTa for\nthis task, a Morphological Dictionary and Tagger.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasSentenceToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasLemmaMorphologicalFeaturesPOS"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "language",
+          "description" : "Use this language instead of the document language to resolve the model.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelVariant",
+          "description" : "Override the default variant used to locate the model.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelArtifactUri",
+          "description" : "URI of the model artifact. This can be used to override the default model resolving \nmechanism and directly address a particular model.\n\n<p>The URI format is mvn:${groupId:${artifactId}:${version}}. Remember to set\nthe variant parameter to match the artifact. If the artifact contains the model in\na non-default location, you  also have to specify the model location parameter, e.g.\nclasspath:/model/path/in/artifact/model.bin.</p>",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelLocation",
+          "description" : "Load the model from this location instead of locating the model automatically.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "true" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "mappingEnabled",
+          "description" : "Enable/disable type mapping.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "POSMappingLocation",
+          "description" : "Load the part-of-speech tag to UIMA type mapping from this location instead of locating\nthe mapping automatically.",
+          "required" : false
+        } ]
+      }
+    },
+    "/UDPipeParser" : {
+      "post" : {
+        "summary" : "Dependency parser using UDPipe. UDPipe uses Parsito, a greedy transition-based parser\nutilizing an artificial neural network.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasLemmaMorphologicalFeaturesPOSSentenceToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasDependency"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "language",
+          "description" : "Use this language instead of the document language to resolve the model.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelVariant",
+          "description" : "Override the default variant used to locate the model.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelArtifactUri",
+          "description" : "URI of the model artifact. This can be used to override the default model resolving \nmechanism and directly address a particular model.\n\n<p>The URI format is mvn:${groupId:${artifactId}:${version}}. Remember to set\nthe variant parameter to match the artifact. If the artifact contains the model in\na non-default location, you  also have to specify the model location parameter, e.g.\nclasspath:/model/path/in/artifact/model.bin.</p>",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelLocation",
+          "description" : "Load the model from this location instead of locating the model automatically.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "true" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "mappingEnabled",
+          "description" : "Enable/disable type mapping.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "DependencyMappingLocation",
+          "description" : "Load the dependency to UIMA type mapping from this location instead of locating\nthe mapping automatically.",
+          "required" : false
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

@@ -1,0 +1,359 @@
+{
+  "components" : {
+    "schemas" : {
+      "CasSpellingAnomalySuggestedAction" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "spellingAnomaly" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SpellingAnomaly"
+            }
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "suggestedAction" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SuggestedAction"
+            }
+          }
+        }
+      },
+      "MorphologicalFeatures" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "voice" : {
+            "type" : "string"
+          },
+          "mood" : {
+            "type" : "string"
+          },
+          "gender" : {
+            "type" : "string"
+          },
+          "degree" : {
+            "type" : "string"
+          },
+          "animacy" : {
+            "type" : "string"
+          },
+          "reflex" : {
+            "type" : "string"
+          },
+          "verbForm" : {
+            "type" : "string"
+          },
+          "number" : {
+            "type" : "string"
+          },
+          "pronType" : {
+            "type" : "string"
+          },
+          "negative" : {
+            "type" : "string"
+          },
+          "person" : {
+            "type" : "string"
+          },
+          "transitivity" : {
+            "type" : "string"
+          },
+          "aspect" : {
+            "type" : "string"
+          },
+          "possessive" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "numType" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "tense" : {
+            "type" : "string"
+          },
+          "case" : {
+            "type" : "string"
+          },
+          "definiteness" : {
+            "type" : "string"
+          }
+        }
+      },
+      "POS" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "posValue" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "coarseValue" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Lemma" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "TokenForm" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasToken" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Token"
+            }
+          }
+        }
+      },
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Token" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "parent" : {
+            "$ref" : "#/components/schemas/Annotation"
+          },
+          "form" : {
+            "$ref" : "#/components/schemas/TokenForm"
+          },
+          "pos" : {
+            "$ref" : "#/components/schemas/POS"
+          },
+          "lemma" : {
+            "$ref" : "#/components/schemas/Lemma"
+          },
+          "syntacticFunction" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "text" : {
+            "type" : "string"
+          },
+          "morph" : {
+            "$ref" : "#/components/schemas/MorphologicalFeatures"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "stem" : {
+            "$ref" : "#/components/schemas/Stem"
+          }
+        }
+      },
+      "SpellingAnomaly" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Annotation" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Stem" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "SuggestedAction" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "certainty" : { },
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "replacement" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/JazzyChecker" : {
+      "post" : {
+        "summary" : "This annotator uses Jazzy for the decision whether a word is spelled correctly or not.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasSpellingAnomalySuggestedAction"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelLocation",
+          "description" : "Location from which the model is read. The model file is a simple word-list with one word\nper line.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "UTF-8" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelEncoding",
+          "description" : "The character encoding used by the model.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "1" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "scoreThreshold",
+          "description" : "Determines the maximum edit distance (as an int value) that a suggestion for a spelling error\nmay have. E.g. if set to one suggestions are limited to words within edit distance 1 to the\noriginal word.",
+          "required" : true
+        } ]
+      }
+    },
+    "/CorrectionsContextualizer" : {
+      "post" : {
+        "summary" : "This component assumes that some spell checker has already been applied upstream (e.g. Jazzy). It\nthen uses n-gram frequencies from a frequency provider in order to rank the provided corrections.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

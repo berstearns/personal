@@ -1,0 +1,87 @@
+{
+  "components" : {
+    "schemas" : {
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/LangDetectLanguageIdentifier" : {
+      "post" : {
+        "summary" : "Langdetect language identifier based on character n-grams.\n\nDue to the way LangDetect is implemented, this component does <b>not</b> support being\ninstantiated multiple times with different model locations. Only a single model location\ncan be active at a time over <b>all</b> instances of this component.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelVariant",
+          "description" : "Variant of a model the model. Used to address a specific model if here are multiple models\nfor one language.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelArtifactUri",
+          "description" : "URI of the model artifact. This can be used to override the default model resolving \nmechanism and directly address a particular model.\n\n<p>The URI format is mvn:${groupId:${artifactId}:${version}}. Remember to set\nthe variant parameter to match the artifact. If the artifact contains the model in\na non-default location, you  also have to specify the model location parameter, e.g.\nclasspath:/model/path/in/artifact/model.bin.</p>",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelLocation",
+          "description" : "Location from which the model is read.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "seed",
+          "description" : "The random seed.",
+          "required" : false
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

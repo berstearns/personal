@@ -1,0 +1,483 @@
+{
+  "components" : {
+    "schemas" : {
+      "MorphologicalFeatures" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "voice" : {
+            "type" : "string"
+          },
+          "mood" : {
+            "type" : "string"
+          },
+          "gender" : {
+            "type" : "string"
+          },
+          "degree" : {
+            "type" : "string"
+          },
+          "animacy" : {
+            "type" : "string"
+          },
+          "reflex" : {
+            "type" : "string"
+          },
+          "verbForm" : {
+            "type" : "string"
+          },
+          "number" : {
+            "type" : "string"
+          },
+          "pronType" : {
+            "type" : "string"
+          },
+          "negative" : {
+            "type" : "string"
+          },
+          "person" : {
+            "type" : "string"
+          },
+          "transitivity" : {
+            "type" : "string"
+          },
+          "aspect" : {
+            "type" : "string"
+          },
+          "possessive" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "numType" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "tense" : {
+            "type" : "string"
+          },
+          "case" : {
+            "type" : "string"
+          },
+          "definiteness" : {
+            "type" : "string"
+          }
+        }
+      },
+      "POS" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "posValue" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "coarseValue" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Lemma" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasPOSToken" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "pOS" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/POS"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Token"
+            }
+          }
+        }
+      },
+      "TokenForm" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Token" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "parent" : {
+            "$ref" : "#/components/schemas/Annotation"
+          },
+          "form" : {
+            "$ref" : "#/components/schemas/TokenForm"
+          },
+          "pos" : {
+            "$ref" : "#/components/schemas/POS"
+          },
+          "lemma" : {
+            "$ref" : "#/components/schemas/Lemma"
+          },
+          "syntacticFunction" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "text" : {
+            "type" : "string"
+          },
+          "morph" : {
+            "$ref" : "#/components/schemas/MorphologicalFeatures"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "stem" : {
+            "$ref" : "#/components/schemas/Stem"
+          }
+        }
+      },
+      "CasPOS" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "pOS" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/POS"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Annotation" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Stem" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/PosFilter" : {
+      "post" : {
+        "summary" : "Removes all tokens/lemmas/stems/POS tags (depending on the \"Mode\" setting) that do not match the\ngiven parts of speech.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasPOS"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "typeToRemove",
+          "description" : "The fully qualified name of the type that should be filtered.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "adj",
+          "description" : "Keep/remove adjectives (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "adp",
+          "description" : "Keep/remove adpositions (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "adv",
+          "description" : "Keep/remove adverbs (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "aux",
+          "description" : "Keep/remove auxiliary verbs (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "conj",
+          "description" : "Keep/remove conjunctions (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "det",
+          "description" : "Keep/remove articles (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "intj",
+          "description" : "Keep/remove interjections (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "noun",
+          "description" : "Keep/remove nouns (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "num",
+          "description" : "Keep/remove numerals (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "part",
+          "description" : "Keep/remove particles (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "pron",
+          "description" : "Keep/remove pronnouns (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "propn",
+          "description" : "Keep/remove proper nouns (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "punct",
+          "description" : "Keep/remove punctuation (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "sconj",
+          "description" : "Keep/remove conjunctions (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "sym",
+          "description" : "Keep/remove symbols (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "verb",
+          "description" : "Keep/remove verbs (true: keep, false: remove)",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "x",
+          "description" : "Keep/remove other (true: keep, false: remove)",
+          "required" : true
+        } ]
+      }
+    },
+    "/PosMapper" : {
+      "post" : {
+        "summary" : "Maps existing POS tags from one tagset to another using a user provided properties file.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasPOSToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasPOSToken"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "mappingFile",
+          "description" : "A properties file containing POS tagset mappings.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "dkproMappingLocation",
+          "description" : "A properties file containing mappings from the new tagset to (fully qualified) DKPro POS\nclasses.<br>\nIf such a file is not supplied, the DKPro POS classes stay the same regardless of the new POS\ntag value, and only the value is changed.",
+          "required" : false
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

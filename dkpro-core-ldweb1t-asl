@@ -1,0 +1,70 @@
+{
+  "components" : {
+    "schemas" : {
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/LanguageDetectorWeb1T" : {
+      "post" : {
+        "summary" : "Language detector based on n-gram frequency counts, e.g. as provided by Web1T",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "1" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "minNGramSize",
+          "description" : "The minimum n-gram size that should be considered. Default is 1.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "3" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "maxNGramSize",
+          "description" : "The maximum n-gram size that should be considered. Default is 3.",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

@@ -1,0 +1,299 @@
+{
+  "components" : {
+    "schemas" : {
+      "Tfidf" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "tfidfValue" : { },
+          "end" : {
+            "type" : "integer"
+          },
+          "term" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasTfidf" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "tfidf" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Tfidf"
+            }
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/TfIdfWriter" : {
+      "post" : {
+        "summary" : "This consumer builds a DfModel. It collects the df (document frequency) counts for the\nprocessed collection. The counts are serialized as a DfModel-object.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "targetLocation",
+          "description" : "Specifies the path and filename where the model file is written.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "lowercase",
+          "description" : "If set to true, the whole text is handled in lower case.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "featurePath",
+          "description" : "This annotator is type agnostic, so it is mandatory to specify the type of the working\nannotation and how to obtain the string representation with the feature path.",
+          "required" : true
+        } ]
+      }
+    },
+    "/PhraseAnnotator" : {
+      "post" : {
+        "summary" : "Annotate phrases in a sentence. Depending on the provided n-grams and the threshold, these\ncomprise either one or two annotations (tokens, lemmas, ...).\n<p>\nIn order to identify longer phrases, run the FrequencyWriter and this annotator multiple\ntimes, each time taking the results of the previous run as input. From the second run on, set\nphrases in the feature path parameter #PARAM_FEATURE_PATH.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "featurePath",
+          "description" : "The feature path to use for building bigrams.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "PARAM_LOWERCASE",
+          "description" : "If true, lowercase everything.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "modelLocation",
+          "description" : "The file providing the uni-grams and bi-grams to use.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "5" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "discount",
+          "description" : "The discount in order to prevent too many phrases consisting of very infrequent words to be\nformed. A typical value is the minimum count set during model creation\n(FrequencyWriter#PARAM_MIN_COUNT), which is by default set to 5.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "100" ]
+          },
+          "in" : "query",
+          "name" : "threshold",
+          "description" : "The threshold score for phrase construction. Default is 100. Lower values result in fewer\nphrases. The value strongly depends on the size of the corpus and the token unigrams.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "stopwordsFile",
+          "description" : "Path of a file containing stopwords one work per line.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "stopwordsReplacement",
+          "description" : "Stopwords are replaced by this value.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "filterRegex",
+          "description" : "Regular expression of tokens to be filtered.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "regexReplacement",
+          "description" : "Value with which tokens matching the regular expression are replaced.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "coveringType",
+          "description" : "Set this parameter if bigrams should only be counted when occurring within a covering type,\ne.g. sentences.",
+          "required" : false
+        } ]
+      }
+    },
+    "/TfIdfAnnotator" : {
+      "post" : {
+        "summary" : "This component adds Tfidf annotations consisting of a term and a tfidf weight. <br>\nThe annotator is type agnostic concerning the input annotation, so you have to specify the\nannotation type and string representation. It uses a pre-serialized DfStore, which can be\ncreated using the TfIdfWriter.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasTfidf"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "featurePath",
+          "description" : "This annotator is type agnostic, so it is mandatory to specify the type of the working\nannotation and how to obtain the string representation with the feature path.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "tfdfPath",
+          "description" : "Provide the path to the Df-Model. When a shared SharedDfModel is bound to this\nannotator, this is ignored.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "lowercase",
+          "description" : "If set to true, the whole text is handled in lower case.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "NORMAL" ]
+          },
+          "in" : "query",
+          "name" : "weightingModeTf",
+          "description" : "The model for term frequency weighting.<br>\nInvoke toString() on an enum of WeightingModeTf for setup.\n<p>\nDefault value is \"NORMAL\" yielding an unweighted tf.",
+          "required" : false
+        }, {
+          "schema" : {
+            "default" : [ "NORMAL" ]
+          },
+          "in" : "query",
+          "name" : "weightingModeIdf",
+          "description" : "The model for inverse document frequency weighting.<br>\nInvoke toString() on an enum of WeightingModeIdf for setup.\n<p>\nDefault value is \"NORMAL\" yielding an unweighted idf.",
+          "required" : false
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

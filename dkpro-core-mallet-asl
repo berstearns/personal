@@ -1,0 +1,520 @@
+{
+  "components" : {
+    "schemas" : {
+      "TopicDistribution" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "topicAssignment" : { },
+          "end" : {
+            "type" : "integer"
+          },
+          "topicProportions" : { },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "MorphologicalFeatures" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "voice" : {
+            "type" : "string"
+          },
+          "mood" : {
+            "type" : "string"
+          },
+          "gender" : {
+            "type" : "string"
+          },
+          "degree" : {
+            "type" : "string"
+          },
+          "animacy" : {
+            "type" : "string"
+          },
+          "reflex" : {
+            "type" : "string"
+          },
+          "verbForm" : {
+            "type" : "string"
+          },
+          "number" : {
+            "type" : "string"
+          },
+          "pronType" : {
+            "type" : "string"
+          },
+          "negative" : {
+            "type" : "string"
+          },
+          "person" : {
+            "type" : "string"
+          },
+          "transitivity" : {
+            "type" : "string"
+          },
+          "aspect" : {
+            "type" : "string"
+          },
+          "possessive" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "numType" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "tense" : {
+            "type" : "string"
+          },
+          "case" : {
+            "type" : "string"
+          },
+          "definiteness" : {
+            "type" : "string"
+          }
+        }
+      },
+      "TokenForm" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Token" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "parent" : {
+            "$ref" : "#/components/schemas/Annotation"
+          },
+          "form" : {
+            "$ref" : "#/components/schemas/TokenForm"
+          },
+          "pos" : {
+            "$ref" : "#/components/schemas/POS"
+          },
+          "lemma" : {
+            "$ref" : "#/components/schemas/Lemma"
+          },
+          "syntacticFunction" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "text" : {
+            "type" : "string"
+          },
+          "morph" : {
+            "$ref" : "#/components/schemas/MorphologicalFeatures"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "stem" : {
+            "$ref" : "#/components/schemas/Stem"
+          }
+        }
+      },
+      "Annotation" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Stem" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "POS" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "posValue" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "coarseValue" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Lemma" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasToken" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "token" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Token"
+            }
+          }
+        }
+      },
+      "WordEmbedding" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "wordEmbedding" : { },
+          "end" : {
+            "type" : "integer"
+          },
+          "begin" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CasTopicDistribution" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "topicDistribution" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TopicDistribution"
+            }
+          }
+        }
+      },
+      "CasWordEmbedding" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "wordEmbedding" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/WordEmbedding"
+            }
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/MalletLdaTopicsProportionsSortedWriter" : {
+      "post" : {
+        "summary" : "Write the topic proportions according to an LDA topic model to an output file. The proportions\nneed to be inferred in a previous step using MalletLdaTopicModelInferencer.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "3" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "nTopics",
+          "description" : "Number of topics to generate.",
+          "required" : true
+        } ]
+      }
+    },
+    "/MalletEmbeddingsAnnotator" : {
+      "post" : {
+        "summary" : "Reads word embeddings from a file and adds WordEmbedding annotations to tokens/lemmas.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasWordEmbedding"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "modelLocation",
+          "description" : "The file containing the word embeddings.\n<p>\nCurrently only supports text file format.\n</p>",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "modelIsBinary",
+          "description" : "Whether the model is in binary format instead of text format.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "annotateUnknownTokens",
+          "description" : "Specify how to handle unknown tokens:\n<ol>\n<li>If this parameter is not specified, unknown tokens are not annotated.</li>\n<li>If an empty float[] is passed, a random vector is generated that is used for each unknown\ntoken.</li>\n<li>If a float[] is passed, each unknown token is annotated with that vector. The float must\nhave the same length as the vectors in the model file.</li>\n</ol>",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "modelHasHeader",
+          "description" : "If set to true (default: false), the first line is interpreted as header line containing the\nnumber of entries and the dimensionality. This should be set to true for models generated\nwith Word2Vec.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "tokenFeaturePath",
+          "description" : "The annotation type to use for the model.  For lemmas, use\nde.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token/lemma/value",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "lowercase",
+          "description" : "If set to true (default: false), all tokens are lowercased.",
+          "required" : true
+        } ]
+      }
+    },
+    "/MalletLdaTopicModelInferencer" : {
+      "post" : {
+        "summary" : "Infers the topic distribution over documents using a Mallet ParallelTopicModel.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasToken"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CasTopicDistribution"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "org.apache.uima.fit.descriptor.ConfigurationParameter.NO_DEFAULT_VALUE" ]
+          },
+          "in" : "query",
+          "name" : "modelLocation",
+          "description" : "Location from which the model is read. This is either a local path or a classpath location.\nIn the latter case, the model artifact (if any) is searched as well.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "typeName",
+          "description" : "The annotation type to use as tokens.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "100" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "nIterations",
+          "description" : "The number of iterations during inference.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "1" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "burnIn",
+          "description" : "The number of iterations before hyper-parameter optimization begins.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "5" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "thinning",
+          "description" : "The number of iterations between saved samples.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "0.2" ]
+          },
+          "in" : "query",
+          "name" : "minTopicProb",
+          "description" : "Minimum topic proportion for the document-topic assignment.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "0" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "maxTopicAssignments",
+          "description" : "Maximum number of topics to assign. If not set (or &lt;= 0), the number of topics in the\nmodel divided by 10 is set.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "tokenFeaturePath",
+          "description" : "The annotation type to use for the model. For lemmas, use\nde.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token/lemma/value",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "3" ],
+            "type" : "integer"
+          },
+          "in" : "query",
+          "name" : "minTokenLength",
+          "description" : "Ignore tokens (or lemmas, respectively) that are shorter than the given value.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "false" ],
+            "type" : "boolean"
+          },
+          "in" : "query",
+          "name" : "lowercase",
+          "description" : "If set to true (default: false), all tokens are lowercased.",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "components" : {
+    "schemas" : {
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/LanguageIdentifier" : {
+      "post" : {
+        "summary" : "<p>Detection based on character n-grams. Uses the <a href=\"http://textcat.sourceforge.net\">Java\nText Categorizing Library</a> based on a technique by Cavnar and Trenkle.</p>\n\n<p><b>References</b></p>\n<ul>\n<li>Cavnar, W. B. and J. M. Trenkle (1994). N-Gram-Based Text Categorization. \nIn Proceedings of Third Annual Symposium on Document Analysis and Information Retrieval, \nLas Vegas, NV, UNLV Publications/Reprographics, pp. 161-175, 11-13 April 1994.</li></ul>",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmptyCas"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}

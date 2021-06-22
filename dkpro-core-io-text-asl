@@ -1,0 +1,153 @@
+{
+  "components" : {
+    "schemas" : {
+      "CasDocumentMetaData" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentMetaData" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DocumentMetaData"
+            }
+          },
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "EmptyCas" : {
+        "type" : "object",
+        "required" : [ "documentText", "language" ],
+        "properties" : {
+          "documentText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        }
+      },
+      "DocumentMetaData" : {
+        "type" : "object",
+        "required" : [ "begin", "end" ],
+        "properties" : {
+          "documentUri" : {
+            "type" : "string"
+          },
+          "isLastSegment" : {
+            "type" : "boolean"
+          },
+          "end" : {
+            "type" : "integer"
+          },
+          "documentBaseUri" : {
+            "type" : "string"
+          },
+          "documentId" : {
+            "type" : "string"
+          },
+          "documentTitle" : {
+            "type" : "string"
+          },
+          "begin" : {
+            "type" : "integer"
+          },
+          "collectionId" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "openapi" : "3.0.0",
+  "paths" : {
+    "/TokenizedTextWriter" : {
+      "post" : {
+        "summary" : "Write texts into into a large file containing one sentence per line and tokens separated by\nwhitespace. Optionally, annotations other than tokens (e.g. lemmas) are written as specified by\n#PARAM_FEATURE_PATH.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CasDocumentMetaData"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyCas"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "default" : [ "UTF-8" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "targetEncoding",
+          "description" : "Encoding for the target file. Default is UTF-8.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "featurePath",
+          "description" : "The feature path, e.g.\nde.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token/lemma/value for lemmas.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "numberRegex",
+          "description" : "Regular expression to match numbers. These are written to the output as NUM.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "" ]
+          },
+          "in" : "query",
+          "name" : "stopwordsFile",
+          "description" : "All the tokens listed in this file (one token per line) are replaced by STOP. Empty\nlines and lines starting with # are ignored. Casing is ignored.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ ".txt" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "extension",
+          "description" : "Set the output file extension.",
+          "required" : true
+        }, {
+          "schema" : {
+            "default" : [ "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence" ],
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "coveringType",
+          "description" : "In the output file, each unit of the covering type is written into a separate line. The\ndefault (set in #DEFAULT_COVERING_TYPE), is sentences so that each sentence is\nwritten to a line.\n<p>\nIf no line breaks within a document are desired, set this value to null.",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DKPro Teanga Wrapper",
+    "version" : "1.0"
+  }
+}
