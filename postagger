@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  title: random value and schemas generator API
+  description: the teanga dummy API example which generates random outputs
+  version: 1.0.0-oas3
+paths:
+  '/postagger':
+    post:
+      operationId: randomvalue
+      summary: Returns a single random  value of given value type.
+      requestBody:
+        content:
+          schema:
+            type: string
+            format: binary
+      responses:
+        '200':
+          description: An array of  values
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: string
