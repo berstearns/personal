@@ -1,13 +1,14 @@
 openapi: 3.0.0
 info:
-  title: random value and schemas generator API
-  description: the teanga dummy API example which generates random outputs
+  title: pos tagger from sentence
+  description: Tree tagger
   version: 1.0.0-oas3
 paths:
   '/postagger':
     post:
-      operationId: randomvalue
-      summary: Returns a single random  value of given value type.
+      operationId: postagger   
+      endpoint: postagger   
+      summary: Returns a part of speech for given sentences on a blob file
       requestBody:
         content:
           schema:
@@ -19,8 +20,4 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: array
-                  items:
-                    type: string
+                  type: string
