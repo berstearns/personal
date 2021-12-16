@@ -9,11 +9,12 @@ paths:
       operationId: postagger   
       endpoint: postagger   
       summary: Returns a part of speech for given sentences on a blob file
-      requestBody:
-        content:
+      parameters:
+        - in: path
+          name: filepath
           schema:
             type: string
-            format: binary
+          required: true
       responses:
         '200':
           description: An array of  values
