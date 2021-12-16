@@ -1,19 +1,19 @@
 openapi: 3.0.0
 info:
   title: chunker
-  description: swc chunker
+  description: SWC replicating cunker 
   version: 1.0.0-oas3
 paths:
-  '/chunker':
+  '/postagger':
     post:
-      operationId: chunker   
-      endpoint: postagger   
-      summary: Returns a part of speech for given sentences on a blob file
-      requestBody:
-        content:
+      operationId:  swcchunker  
+      endpoint: swcchunker   
+      summary: Returns a tree format chunkerized text
+      parameters:
+        - in: path
+          name: parser
           schema:
             type: string
-            format: binary
       responses:
         '200':
           description: An array of  values
