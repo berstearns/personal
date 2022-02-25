@@ -4,7 +4,7 @@ info:
   description: Tree tagger
   version: 1.0.0-oas3
 paths:
-  '/postagger':
+  '/sentences_tagger':
     post:
       operationId: postagger   
       endpoint: postagger   
@@ -13,7 +13,12 @@ paths:
         content:
           application/json:
             schema:
-              type: string
+              properties:
+                sentences:
+                  collectionFormat: multi
+                  items:
+                    type: string
+                  type: array
         '200':
           description: An array of  values
           content:
