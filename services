@@ -1,6 +1,6 @@
 [
                   {
-                            "name":"SWC - Chunker - popcorn",
+                            "name":"SWC - Chunker",
                             "url":"https://raw.githubusercontent.com/berstearns/personal/main/swcchunker",
                             "repo":"berstearns",
                             "image_id":"teanga-swc-chunker",
@@ -10,7 +10,7 @@
                         },
 
                   {
-                            "name":"DKPRO pos tagger",
+                            "name":"SWC - POS tagger",
                             "url":"https://raw.githubusercontent.com/berstearns/personal/main/postagger",
                             "repo":"berstearns",
                             "image_id":"teanga-postagger",
