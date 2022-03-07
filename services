@@ -83,15 +83,6 @@
                     "container_port":8080
                 },
                 {
-                    "name":"dkpro-core-castransformation-asl",
-                    "url":"https://raw.githubusercontent.com/berstearns/personal/main/dkpro-core-castransformation-asl",
-                    "repo":"berstearns",
-                    "image_id":"teanga-dkpro-core-castransformation-asl",
-                    "image_tag":"122021",
-                    "host_port": 8001,
-                    "container_port": 8080
-                },
-                {
                     "name":"dkpro-core-clearnlp-asl",
                     "url":"https://raw.githubusercontent.com/berstearns/personal/main/dkpro-core-clearnlp-asl",
                     "repo":"berstearns",
