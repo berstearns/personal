@@ -3,8 +3,8 @@
                             "name":"SWC - Chunker",
                             "url":"https://raw.githubusercontent.com/berstearns/personal/main/swcchunker",
                             "repo":"berstearns",
-                            "image_id":"teanga-swc-chunker",
-                            "image_tag":"122021",
+                            "image_id":"teanga-chunker",
+                            "image_tag":"032022",
                             "host_port":8001,
                             "container_port":8080
                         },
