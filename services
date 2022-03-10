@@ -2,7 +2,7 @@
                   {
                             "name":"SWC - Chunker",
                             "url":"https://raw.githubusercontent.com/berstearns/personal/main/swcchunker",
-                            "repo":"berstearns",
+                            "repo":"pretallod",
                             "image_id":"teanga-chunker",
                             "image_tag":"032022",
                             "host_port":8001,
@@ -12,7 +12,7 @@
                   {
                             "name":"SWC - POS tagger",
                             "url":"https://raw.githubusercontent.com/berstearns/personal/main/postagger",
-                            "repo":"berstearns",
+                            "repo":"pretallod",
                             "image_id":"teanga-postagger",
                             "image_tag":"032022",
                             "host_port":8001,
