@@ -20,11 +20,11 @@
                         },
         
                         {
-                            "name":"dummy teanga",
-                            "url":"https://raw.githubusercontent.com/berstearns/personal/main/dummy.yaml",
-                            "repo":"berstearns",
-                            "image_id":"dummy_teanga_service",
-                            "image_tag":"042021",
+                            "name":"dummy teanga python",
+                            "url":"https://raw.githubusercontent.com/berstearns/personal/main/dummy_python.yaml",
+                            "repo":"pretallod",
+                            "image_id":"teanga-dummy_service_python",
+                            "image_tag":"latest",
                             "host_port":8001,
                             "container_port":8080
                         },
